@@ -31,7 +31,7 @@ public class Move : MonoBehaviour {
 				if (CanRotateVerticaly && Input.GetKey (KeyCode.LeftControl))
 					Selected.transform.Rotate (new Vector3 (-Input.GetAxis ("Mouse Y"), 0, 0));
 			} else if (CanMove && Input.GetKey (KeyCode.LeftShift)) {
-				Selected.transform.Translate (new Vector3 (-Input.GetAxis ("Mouse X") / 4, Input.GetAxis ("Mouse Y") / 4, 0));
+				Selected.transform.position += new Vector3(-Input.GetAxis("Mouse X") / 4, Input.GetAxis("Mouse Y") / 4, 0);
 			}
 		}
 	}
