@@ -15,7 +15,6 @@ public class Move : MonoBehaviour {
 		RaycastHit hit;
 		if (Input.GetMouseButtonDown (0)) {
 			if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit, 100)) {
-				Debug.Log (hit.transform.tag);
 				if (hit.transform.tag == "Puzzle") {
 					Selected = hit.transform.gameObject.GetComponent<Puzzle>();
 				}
