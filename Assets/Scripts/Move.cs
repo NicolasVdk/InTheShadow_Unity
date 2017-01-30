@@ -23,14 +23,14 @@ public class Move : MonoBehaviour {
 		if (Input.GetMouseButtonUp (0)) {
 			Selected = null;
 		}
-		if (Selected != null) {
+		if (Selected != null && !Selected.Resolved) {
 			if (!Input.GetKey (KeyCode.LeftShift)) {
 				if (CanRotateHorizontaly && !Input.GetKey (KeyCode.LeftControl))
-					Selected.transform.Rotate (new Vector3 (0, -Input.GetAxis ("Mouse X"), 0));
+					Selected.transform.Rotate (new Vector3 (0, -Input.GetAxis ("Mouse X"), 0), Space.World);
 				if (CanRotateVerticaly && Input.GetKey (KeyCode.LeftControl))
-					Selected.transform.Rotate (new Vector3 (-Input.GetAxis ("Mouse Y"), 0, 0));
+					Selected.transform.Rotate (new Vector3 (-Input.GetAxis ("Mouse Y"), 0, 0), Space.World);
 			} else if (CanMove && Input.GetKey (KeyCode.LeftShift)) {
-				Selected.transform.position += new Vector3(-Input.GetAxis("Mouse X") / 4, Input.GetAxis("Mouse Y") / 4, 0);
+				Selected.transform.Translate(new Vector3(-Input.GetAxis("Mouse X") / 4, Input.GetAxis("Mouse Y") / 4, 0), Space.World);
 			}
 		}
 	}

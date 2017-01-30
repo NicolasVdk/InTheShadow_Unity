@@ -15,8 +15,9 @@ public class Puzzle : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Debug.Log (Quaternion.Dot (transform.rotation, Quaternion.Euler (Resolve)));
-		if (Quaternion.Dot(transform.rotation, Quaternion.Euler(Resolve)) > 0.9999f || Quaternion.Dot(transform.rotation, Quaternion.Euler(Resolve)) < -0.9999f) {
-			Debug.Log ("Good");
+		if (Quaternion.Dot(transform.rotation, Quaternion.Euler(Resolve)) > 0.999f || Quaternion.Dot(transform.rotation, Quaternion.Euler(Resolve)) < -0.999f) {
+			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(Resolve), 0.7f * Time.deltaTime);
+			Resolved = true;
 		}
 	}
 }
