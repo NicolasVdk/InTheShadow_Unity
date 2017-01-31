@@ -6,6 +6,7 @@ public class Move : MonoBehaviour {
 
 	public Puzzle Selected;
 	public float SpeedRotate = 3;
+	public bool move = true;
 	public bool CanRotateHorizontaly = false;
 	public bool CanRotateVerticaly = false;
 	public bool CanMove = false;
@@ -23,7 +24,7 @@ public class Move : MonoBehaviour {
 		if (Input.GetMouseButtonUp (0)) {
 			Selected = null;
 		}
-		if (Selected != null && !Selected.Resolved) {
+		if (Selected != null && move) {
 			if (!Input.GetKey (KeyCode.LeftShift)) {
 				if (CanRotateHorizontaly && !Input.GetKey (KeyCode.LeftControl))
 					Selected.transform.Rotate (new Vector3 (0, -Input.GetAxis ("Mouse X"), 0), Space.World);

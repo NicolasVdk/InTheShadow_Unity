@@ -33,4 +33,12 @@ public class MainMenu : MonoBehaviour {
 	public void LoadLevel(string level) {
 		SceneManager.LoadScene (level);
 	}
+
+	public void LevelWin() {
+		GameObject WinEffect = GameObject.Find ("WinEffect");
+		if (WinEffect != null) {
+			WinEffect.GetComponent<ParticleSystem> ().Play ();
+		}
+		Debug.Log ("Level Winned");
+	}
 }
