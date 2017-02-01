@@ -1,14 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
 
-	private static MainMenu instance = null;
+	public static MainMenu instance = null;
 	public static MainMenu Instance {
 		get { return instance; }
 	}
+	public bool SoundUnlock;
+	public bool levelWinned = false;
+	public bool TestMode = false;
+	public GameObject QuitMenu;
 
 	void Awake() {
 		if (instance != null && instance != this) {
@@ -19,26 +22,24 @@ public class MainMenu : MonoBehaviour {
 		}
 		DontDestroyOnLoad(this.gameObject);
 	}
-
-	// Use this for initialization
-	void Start () {
-		
-	}
 	
 	// Update is called once per frame
 	void Update () {
-		
 	}
 
-	public void LoadLevel(string level) {
-		SceneManager.LoadScene (level);
-	}
-
-	public void LevelWin() {
-		GameObject WinEffect = GameObject.Find ("WinEffect");
-		if (WinEffect != null) {
-			WinEffect.GetComponent<ParticleSystem> ().Play ();
+	public void LevelWin(int Level) {
+		if (!levelWinned) {
+			levelWinned = true;
+			if (!TestMode) {
+				if (PlayerPrefs.GetInt ("LevelUnlocked") < Level + 1)
+					PlayerPrefs.SetInt ("LevelUnlocked", Level + 1);
+			}
+			GameObject WinEffect = GameObject.Find ("WinEffect");
+			if (WinEffect != null) {
+				WinEffect.GetComponent<ParticleSystem> ().Play ();
+			}
+			Instantiate (QuitMenu);
+			Debug.Log ("Level Winned");
 		}
-		Debug.Log ("Level Winned");
 	}
 }

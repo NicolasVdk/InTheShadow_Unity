@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Win : MonoBehaviour {
 
+	public int Level;
 	public Puzzle Puzzle1;
 	public Puzzle Puzzle2;
 	public bool NeedSpecialPosition = false;
@@ -37,11 +38,11 @@ public class Win : MonoBehaviour {
 				Debug.Log (dotUp);
 				if (dotLeft >= DotLeftMin && dotLeft <= DotLeftMax && dotUp >= DotUpMin && dotUp <= DotUpMax) {
 					transform.GetComponent<Move> ().move = false;
-					MainMenu.Instance.LevelWin ();
+					MainMenu.Instance.LevelWin (Level);
 				}
 			} else {
 				transform.GetComponent<Move> ().move = false;
-				MainMenu.Instance.LevelWin ();
+				MainMenu.Instance.LevelWin (Level);
 			}
 		}
 	}
