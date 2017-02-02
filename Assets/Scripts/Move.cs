@@ -31,7 +31,8 @@ public class Move : MonoBehaviour {
 				if (CanRotateVerticaly && Input.GetKey (KeyCode.LeftControl))
 					Selected.transform.Rotate (new Vector3 (-Input.GetAxis ("Mouse Y"), 0, 0), Space.World);
 			} else if (CanMove && Input.GetKey (KeyCode.LeftShift)) {
-				Selected.transform.Translate(new Vector3(-Input.GetAxis("Mouse X") / 4, Input.GetAxis("Mouse Y") / 4, 0), Space.World);
+				if (Vector3.Distance(Selected.transform.position + new Vector3(-Input.GetAxis("Mouse X") / 4, Input.GetAxis("Mouse Y") / 4, 0), transform.position) < 10)
+					Selected.transform.Translate(new Vector3(-Input.GetAxis("Mouse X") / 4, Input.GetAxis("Mouse Y") / 4, 0), Space.World);
 			}
 		}
 	}
