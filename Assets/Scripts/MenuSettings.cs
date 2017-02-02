@@ -14,6 +14,7 @@ public class MenuSettings : MonoBehaviour {
 	public RawImage SoundButton;
 	public RawImage SwitchModeButton;
 	public List<Button> Levels;
+	public Text LevelInfo;
 
 	// Use this for initialization
 	void Start () {
@@ -80,5 +81,9 @@ public class MenuSettings : MonoBehaviour {
 	public void LoadLevel(string level) {
 		SceneManager.LoadScene (level);
 		MainMenu.instance.levelWinned = false;
+	}
+
+	public void ChangeLevelInfo(string levelinfo) {
+		LevelInfo.text = levelinfo;
 	}
 }
